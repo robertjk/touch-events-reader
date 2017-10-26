@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Tell the browser that the page is responsive. -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1" />
+    <meta name="description"
+          content="Reads and prints touch events in the browser" />
+
+    <title>Touch Events Reader</title>
+
+    <script type="text/javascript" src="./lib/mustache.js"></script>
+    <script type="module" src="./main.js"></script>
+
+    <!-- Template for log of a single event. -->
+    <template id="event-template">
+        <li>
+            [{{ timeOfEvent }}s]
+            {{ touches.length }}
+            touch(es)
+            {{# isStarted }}started{{/ isStarted}}
+            {{^ isStarted }}ended{{/ isStarted }}:
+
+            <ul>
+                {{# touches }}
+                <li>
+                    <ul>
+                        <li>identifier: {{ identifier }}</li>
+                        <li>x: {{ clientX }}</li>
+                        <li>y: {{ clientY }}</li>
+                        <li>radiusX: {{ radiusX }}</li>
+                        <li>radiusY: {{ radiusY }}</li>
+                        <li>force: {{ force }}</li>
+                    </ul>
+                </li>
+                {{/ touches }}
+            </ul>
+        </li>
+    </template>
+  </head>
+  <body>
+      <h1>Touch events</h1>
+
+      <section>
+          <h2>Events registered by the browser</h2>
+          <ul id="browser-events-list">
+          </ul>
+      </section>
+
+      <section>
+          <h2>Events as recognized by hammer.js</h2>
+          <ul id="library-events-list">
+          </ul>
+      </section>
+  </body>
+</html>
