@@ -10,48 +10,87 @@
 
     <title>Touch Events Reader</title>
 
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+
+    <!-- Scripts. -->
     <script type="text/javascript" src="./lib/mustache.js"></script>
+    <script type="text/javascript" src="./lib/hammer.js"></script>
     <script type="module" src="./main.js"></script>
 
     <!-- Template for log of a single event. -->
-    <template id="event-template">
-        <li>
-            [{{ timeOfEvent }}s]
-            {{ touches.length }}
-            touch(es)
-            {{# isStarted }}started{{/ isStarted}}
-            {{^ isStarted }}ended{{/ isStarted }}:
-
-            <ul>
+    <template id="browser-event-template">
+        <li class="Event List-Item">
+            <p class="Event-MainDescription">
+                <span class="Event-Time">[{{ timeOfEvent }}s]</span>
+                <span class="Event-Type Event-Type--{{ type }}">{{ type }}</span>
+                <span class="Event-DescriptionEnd">with {{ touches.length }}
+                    touch(es)</span>
+            </p>
+            <ul class="Event-TouchList">
                 {{# touches }}
-                <li>
-                    <ul>
-                        <li>identifier: {{ identifier }}</li>
-                        <li>x: {{ clientX }}</li>
-                        <li>y: {{ clientY }}</li>
-                        <li>radiusX: {{ radiusX }}</li>
-                        <li>radiusY: {{ radiusY }}</li>
-                        <li>force: {{ force }}</li>
+                <li class="Event-Touch">
+                    ID: <span class="Event-TouchId">{{ identifier }}</span>
+                    <ul class="Event-PropertiesList">
+                        <li class="Event-Property">x: {{ clientX }}</li>
+                        <li class="Event-Property">y: {{ clientY }}</li>
+                        <li class="Event-Property">radiusX: {{ radiusX }}</li>
+                        <li class="Event-Property">radiusY: {{ radiusY }}</li>
+                        <li class="Event-Property">force: {{ force }}</li>
                     </ul>
                 </li>
                 {{/ touches }}
             </ul>
         </li>
     </template>
+
+    <template id="hammer-event-template">
+        <li class="Event List-Item">
+            <p class="Event-MainDescription">
+                <span class="Event-Time">[{{ timeOfEvent }}s]</span>
+                <span class="Event-Type Event-Type--{{ touch.type }}">{{ touch.type }}</span>
+                {{# touch }}
+            </p>
+            <ul class="Event-PropertiesList">
+                <li class="Event-Property">deltaX: {{ deltaX }}</li>
+                <li class="Event-Property">deltaY: {{ deltaY }}</li>
+                <li class="Event-Property">deltaTime: {{ deltaTime }}</li>
+                <li class="Event-Property">distance: {{ distance }}</li>
+                <li class="Event-Property">angle: {{ angle }}</li>
+                <li class="Event-Property">velocityX: {{ velocityX }}</li>
+                <li class="Event-Property">velocityY: {{ velocityY }}</li>
+                <li class="Event-Property">direction: {{ direction }}</li>
+                <li class="Event-Property">offsetDirection: {{ offsetDirection }}</li>
+                <li class="Event-Property">scale: {{ scale }}</li>
+                <li class="Event-Property">rotation: {{ rotation }}</li>
+                <li class="Event-Property">center: {{ center }}</li>
+            </ul>
+            {{/ touch }}
+        </li>
+    </template>
   </head>
-  <body>
-      <h1>Touch events</h1>
+  <body class="Layout">
+      <h1 class="Layout-Title">Touch events</h1>
 
-      <section>
-          <h2>Events registered by the browser</h2>
-          <ul id="browser-events-list">
-          </ul>
-      </section>
+      <div id="touch-area"
+           class="Layout-TouchArea">
+          Touch area
+      </div>
 
-      <section>
-          <h2>Events as recognized by hammer.js</h2>
-          <ul id="library-events-list">
-          </ul>
-      </section>
+      <div class="DualPanel Layout-Events">
+          <section class="DualPanel-Section">
+              <h2 class="DualPanel-Heading">Registered by the browser</h2>
+              <ul id="browser-events-list"
+                  class="List">
+              </ul>
+          </section>
+
+          <section class="DualPanel-Section">
+              <h2 class="DualPanel-Heading">Recognized by hammer.js</h2>
+              <ul id="library-events-list"
+                  class="List">
+              </ul>
+          </section>
+      </div>
   </body>
 </html>
