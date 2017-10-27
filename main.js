@@ -1,21 +1,21 @@
 // How many milliseconds will be shown in event time log.
 const TIME_PRECISION = 3;
 
-const TOUCH_AREA_ID = "touch-area";
-const TOUCH_AREA_HEIGHT_ID = "touch-area-height";
-const BROWSER_EVENT_TEMPLATE_ID = "browser-event-template";
-const LIBRARY_EVENT_TEMPLATE_ID = "hammer-event-template";
+const TOUCH_AREA_ID = 'touch-area';
+const TOUCH_AREA_HEIGHT_ID = 'touch-area-height';
+const BROWSER_EVENT_TEMPLATE_ID = 'browser-event-template';
+const LIBRARY_EVENT_TEMPLATE_ID = 'hammer-event-template';
 const BROWSER_EVENTS_LIST_ID = 'browser-events-list';
 const LIBRARY_EVENTS_LIST_ID = 'library-events-list';
 
 const startTime = performance.now();
 
-const touchArea = document.getElementById(TOUCH_AREA_ID);
-const touchAreaHeight = document.getElementById(TOUCH_AREA_HEIGHT_ID);
-const browserEventTemplate = document.getElementById(BROWSER_EVENT_TEMPLATE_ID).innerHTML;
-const libraryEventTemplate = document.getElementById(LIBRARY_EVENT_TEMPLATE_ID).innerHTML;
-const browserEvents = document.getElementById(BROWSER_EVENTS_LIST_ID);
-const libraryEvents = document.getElementById(LIBRARY_EVENTS_LIST_ID);
+let touchArea;
+let touchAreaHeight;
+let browserEventTemplate;
+let libraryEventTemplate;
+let browserEvents;
+let libraryEvents;
 
 
 function changeTouchAreaHeight(height) {
@@ -66,6 +66,16 @@ function printHammerEvent(event) {
 }
 
 
+function initializeVariables() {
+    touchArea = document.getElementById(TOUCH_AREA_ID);
+    touchAreaHeight = document.getElementById(TOUCH_AREA_HEIGHT_ID);
+    browserEventTemplate = document.getElementById(BROWSER_EVENT_TEMPLATE_ID).innerHTML;
+    libraryEventTemplate = document.getElementById(LIBRARY_EVENT_TEMPLATE_ID).innerHTML;
+    browserEvents = document.getElementById(BROWSER_EVENTS_LIST_ID);
+    libraryEvents = document.getElementById(LIBRARY_EVENTS_LIST_ID);
+}
+
+
 function initializeControls() {
     resetTouchAreaHeightValue();
     touchAreaHeight.addEventListener('change', (event) => {
@@ -108,6 +118,9 @@ function initializeLibraryEvents() {
 }
 
 
-initializeControls();
-initializeBrowserEvents();
-initializeLibraryEvents();
+document.addEventListener('DOMContentLoaded', () => {
+    initializeVariables();
+    initializeControls();
+    initializeBrowserEvents();
+    initializeLibraryEvents();
+});
