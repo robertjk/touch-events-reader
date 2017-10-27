@@ -90,10 +90,12 @@ function initializeControls() {
 
 
 function initializeBrowserEvents() {
-    touchArea.addEventListener('touchstart',  printBrowserEvent);
-    touchArea.addEventListener('touchend',    printBrowserEvent);
-    touchArea.addEventListener('touchcancel', printBrowserEvent);
-    touchArea.addEventListener('touchmove',   printBrowserEvent);
+    let options = { passive: true };
+
+    touchArea.addEventListener('touchstart',  printBrowserEvent, options);
+    touchArea.addEventListener('touchend',    printBrowserEvent, options);
+    touchArea.addEventListener('touchcancel', printBrowserEvent, options);
+    touchArea.addEventListener('touchmove',   printBrowserEvent, options);
 }
 
 
