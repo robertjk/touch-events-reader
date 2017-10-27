@@ -33,6 +33,11 @@ function currentTime() {
 }
 
 
+function scrollDownElement(element) {
+    element.scrollTop = element.scrollHeight - element.clientHeight;
+}
+
+
 function printBrowserEvent(event) {
     let view = {
         timeOfEvent: currentTime(),
@@ -44,6 +49,7 @@ function printBrowserEvent(event) {
     Mustache.parse(browserEventTemplate);
     let eventHTML = Mustache.render(browserEventTemplate, view);
     browserEvents.innerHTML += eventHTML;
+    scrollDownElement(browserEvents);
 }
 
 
@@ -56,6 +62,7 @@ function printHammerEvent(event) {
     Mustache.parse(libraryEventTemplate);
     let eventHTML = Mustache.render(libraryEventTemplate, view);
     libraryEvents.innerHTML += eventHTML;
+    scrollDownElement(libraryEvents);
 }
 
 
