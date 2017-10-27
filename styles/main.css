@@ -4,6 +4,7 @@
 
 :root {
     --black: #000000;
+    --white: #ffffff;
     --grey-dark: #303030;
     --grey-light: #fcfcfc;
     --brown: #903a20;
@@ -76,6 +77,8 @@ body {
  * ========================================================================== */
 
 .Layout {
+    --spacing-y: 30px;
+
     display: flex;
     flex-flow: column nowrap;
     box-sizing: border-box;
@@ -90,14 +93,19 @@ body {
     text-align: center;
 }
 
+
+.Layout-Controls {
+    margin-bottom: var(--spacing-y);
+}
+
 .Layout-TouchArea {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    margin-bottom: 30px;
-    border: 2px solid;
+    margin-bottom: var(--spacing-y);
+    border: 1px solid;
     width: 100%;
     height: 200px;
     background-color: var(--yellow-dim);
@@ -107,6 +115,35 @@ body {
 .Layout-Events {
     flex: 1 0 0;
     overflow: hidden;
+}
+
+
+/* ==========================================================================
+ * Controls.
+ * ========================================================================== */
+
+.Controls-Control {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.Controls-ControlTitle {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.Controls-ControlInputs {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.Controls-ControlInput--Number {
+    background-color: var(--white);
+    border: 1px solid;
+    padding: 7px 5px;
+    width: 100%;
 }
 
 /* ==========================================================================
@@ -169,7 +206,7 @@ body {
  * ========================================================================== */
 
 .Event {
-    --spacing: 5px;
+    --spacing-y: 5px;
 }
 
 .Event-MainDescription {
@@ -181,7 +218,7 @@ body {
 }
 
 .Event-Type {
-    margin-left: var(--spacing);
+    margin-left: var(--spacing-y);
     padding: 0 6px;
     color: var(--black);
     font-weight: 600;
@@ -232,7 +269,7 @@ body {
 }
 
 .Event-DescriptionEnd {
-    margin-left: var(--spacing);
+    margin-left: var(--spacing-y);
 }
 
 .Event-TouchList {

@@ -2,6 +2,7 @@
 const TIME_PRECISION = 3;
 
 const TOUCH_AREA_ID = "touch-area";
+const TOUCH_AREA_HEIGHT_ID = "touch-area-height";
 const BROWSER_EVENT_TEMPLATE_ID = "browser-event-template";
 const LIBRARY_EVENT_TEMPLATE_ID = "hammer-event-template";
 const BROWSER_EVENTS_LIST_ID = 'browser-events-list';
@@ -10,10 +11,21 @@ const LIBRARY_EVENTS_LIST_ID = 'library-events-list';
 const startTime = performance.now();
 
 const touchArea = document.getElementById(TOUCH_AREA_ID);
+const touchAreaHeight = document.getElementById(TOUCH_AREA_HEIGHT_ID);
 const browserEventTemplate = document.getElementById(BROWSER_EVENT_TEMPLATE_ID).innerHTML;
 const libraryEventTemplate = document.getElementById(LIBRARY_EVENT_TEMPLATE_ID).innerHTML;
 const browserEvents = document.getElementById(BROWSER_EVENTS_LIST_ID);
 const libraryEvents = document.getElementById(LIBRARY_EVENTS_LIST_ID);
+
+
+function changeTouchAreaHeight(height) {
+    touchArea.style.height = `${height}px`;
+}
+
+
+function resetTouchAreaHeightValue() {
+    touchAreaHeight.value = touchArea.offsetHeight;
+}
 
 
 function currentTime() {
@@ -47,7 +59,20 @@ function printHammerEvent(event) {
 }
 
 
-function initializeBrowserHandlers() {
+function initializeControls() {
+    resetTouchAreaHeightValue();
+    touchAreaHeight.addEventListener('change', (event) => {
+        let height = parseInt(touchAreaHeight.value);
+        if (height && 0 < height) {
+            changeTouchAreaHeight(height);
+        } else {
+            resetTouchAreaHeightValue();
+        }
+    });
+}
+
+
+function initializeBrowserEvents() {
     touchArea.addEventListener('touchstart',  printBrowserEvent);
     touchArea.addEventListener('touchend',    printBrowserEvent);
     touchArea.addEventListener('touchcancel', printBrowserEvent);
@@ -55,7 +80,7 @@ function initializeBrowserHandlers() {
 }
 
 
-function initializeLibraryHandlers() {
+function initializeLibraryEvents() {
     const hammer = new Hammer(touchArea);
 
     // Enable pinch and rotate recognizers, which are disabled by default.
@@ -76,5 +101,6 @@ function initializeLibraryHandlers() {
 }
 
 
-initializeBrowserHandlers();
-initializeLibraryHandlers();
+initializeControls();
+initializeBrowserEvents();
+initializeLibraryEvents();
