@@ -114,6 +114,7 @@ function initializeControls() {
     browserEventsDisplayed.addEventListener('change', changeEventsSectionDisplay(browserEventsSection));
     libraryEventsDisplayed.addEventListener('change', changeEventsSectionDisplay(libraryEventsSection));
 
+    // Adjust visibility to checkboxes values.
     if (!browserEventsDisplayed.checked) {
         browserEventsSection.classList.add(EVENTS_SECTION_HIDDEN_CLASS);
     }
