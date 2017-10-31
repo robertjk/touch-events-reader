@@ -17,6 +17,7 @@
     --purple: #e080e0;
 }
 
+
 /* ==========================================================================
  * Font imports.
  * ========================================================================== */
@@ -86,6 +87,7 @@ body {
     height: 100vh;
 }
 
+
 .Layout-Title {
     margin-bottom: 30px;
     font-size: 30rem;
@@ -97,6 +99,7 @@ body {
 .Layout-Controls {
     margin-bottom: var(--spacing-y);
 }
+
 
 .Layout-TouchArea {
     flex: 0 0 auto;
@@ -112,6 +115,7 @@ body {
     font-size: 22rem;
 }
 
+
 .Layout-Events {
     flex: 1 0 0;
     overflow: hidden;
@@ -122,29 +126,74 @@ body {
  * Controls.
  * ========================================================================== */
 
-.Controls-Control {
-    display: inline-flex;
+.Controls {
+    display: flex;
     flex-flow: column nowrap;
-    align-items: center;
 }
 
-.Controls-ControlTitle {
+
+.Controls-Group {
+    display: inline-flex;
+    flex-flow: column nowrap;
+}
+
+
+.Controls-Group + .Controls-Group {
+    margin-top: 25px;
+}
+
+
+.Controls-GroupTitle {
     margin-bottom: 5px;
     font-weight: 600;
 }
 
-.Controls-ControlInputs {
+
+.Controls-Inputs {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
 }
 
-.Controls-ControlInput--Number {
-    background-color: var(--white);
+
+.Controls-Input {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    box-sizing: border-box;
+    height: 28px;
+}
+
+
+.Controls-Input + .Controls-Input {
+    margin-left: 14px;
+}
+
+
+.Controls-Input--Number {
+    margin-right: 4px;
     border: 1px solid;
     padding: 7px 5px;
     width: 100%;
+    max-width: 100px;
+    background-color: var(--white);
 }
+
+
+.Controls-Input--Checkbox {}
+
+
+@media (min-width: 440px) {
+    .Controls {
+        flex-direction: row;
+    }
+
+    .Controls-Group + .Controls-Group {
+        margin-top: 0;
+        margin-left: 40px;
+    }
+}
+
 
 /* ==========================================================================
  * Dual panel.
@@ -152,8 +201,9 @@ body {
 
 .DualPanel {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
 }
+
 
 .DualPanel-Section {
     flex: 1 0 0;
@@ -168,8 +218,8 @@ body {
 }
 
 
-.DualPanel-Section + .DualPanel-Section {
-    margin-left: 30px;
+.DualPanel-Section:not(.DualPanel--IsHidden) + .DualPanel-Section {
+    margin-top: 30px;
 }
 
 
@@ -180,11 +230,23 @@ body {
     font-weight: 700;
 }
 
+
 .DualPanel-Content {
     flex: 1 0 0;
     overflow: auto;
 }
 
+
+@media (min-width: 600px) {
+    .DualPanel {
+        flex-direction: row;
+    }
+
+    .DualPanel-Section:not(.DualPanel--IsHidden) + .DualPanel-Section {
+        margin-top: 0;
+        margin-left: 30px;
+    }
+}
 
 /* ==========================================================================
  * List.
@@ -201,6 +263,7 @@ body {
 .List-Item {
 }
 
+
 .List-Item + .List-Item {
     margin-top: 12px;
 }
@@ -214,13 +277,16 @@ body {
     --spacing-y: 5px;
 }
 
+
 .Event-MainDescription {
     margin-bottom: 5px;
 }
 
+
 .Event-Time {
     font-weight: 700;
 }
+
 
 .Event-Type {
     margin-left: var(--spacing-y);
@@ -229,64 +295,81 @@ body {
     font-weight: 600;
 }
 
+
 .Event-Type--touchstart {
     background-color: var(--green);
 }
+
 
 .Event-Type--touchend {
     background-color: var(--red);
 }
 
+
 .Event-Type--touchmove {
     background-color: var(--blue);
 }
+
 
 .Event-Type--touchcancel {
     background-color: var(--orange);
 }
 
+
 .Event-Type--tap {
     background-color: var(--blue);
 }
+
 
 .Event-Type--doubletap {
     background-color: var(--purple);
 }
 
+
 .Event-Type--pan {
     background-color: var(--orange);
 }
+
 
 .Event-Type--swipe {
     background-color: var(--yellow);
 }
 
+
 .Event-Type--press {
     background-color: var(--green);
 }
+
 
 .Event-Type--pinch {
     background-color: var(--brown);
 }
 
+
 .Event-Type--rotate {
     background-color: var(--red);
 }
+
 
 .Event-DescriptionEnd {
     margin-left: var(--spacing-y);
 }
 
+
 .Event-TouchList {
     padding-left: 8px;
 }
 
+
 .Event-Touch {
 }
+
 
 .Event-TouchId {
     font-weight: 700;
 }
+
+
 
 .Event-PropertiesList {
     padding-left: 25px;
@@ -294,5 +377,5 @@ body {
     list-style: disc;
 }
 
-.Event-Property {
-}
+
+.Event-Property {}

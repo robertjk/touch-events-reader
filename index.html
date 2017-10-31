@@ -73,28 +73,34 @@
       <h1 class="Layout-Title">Touch events</h1>
 
       <div class="Controls Layout-Controls">
-          <div class="Controls-Control">
-              <label class="Controls-ControlTitle">Touch area height:</label>
-              <div class="Controls-ControlInputs">
+          <div class="Controls-Group">
+              <label for="touch-area-height"
+                     class="Controls-GroupTitle">Touch area height:</label>
+              <div class="Controls-Inputs">
                   <input type="number"
                          id="touch-area-height"
-                         class="Controls-ControlInput--Number"> px
+                         class="Controls-Input Controls-Input--Number"> px
               </div>
           </div>
-          <div>
-              <label>Show browser events</label>
-              <input type="checkbox"
-                     checked="checked"
-                     id="browser-events-displayed"
-                     class="" />
-          </div>
-          <div>
-              <label>Show hammer.js events</label>
-              <input type="checkbox"
-                     checked="checked"
-                     id="library-events-displayed"
-                     class="" />
-          </div>
+          <fieldset class="Controls-Group">
+              <legend class="Controls-GroupTitle">Show events:</legend>
+              <div class="Controls-Inputs">
+                  <label class="Controls-Input Controls-Input--Checkbox">
+                      Browser
+                      <input type="checkbox"
+                             checked="checked"
+                             id="browser-events-displayed"
+                             class="" />
+                  </label>
+                  <label class="Controls-Input Controls-Input--Checkbox">
+                      hammer.js
+                      <input type="checkbox"
+                             checked="checked"
+                             id="library-events-displayed"
+                             class="" />
+                  </label>
+              </div>
+          </fieldset>
       </div>
 
       <div id="touch-area"
