@@ -77,14 +77,14 @@ body {
  * Layout.
  * ========================================================================== */
 
-.Layout {
+.Layout-Page {
     --spacing-y: 30px;
 
     display: flex;
     flex-flow: column nowrap;
     box-sizing: border-box;
     padding: 30px 40px;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 
@@ -118,7 +118,6 @@ body {
 
 .Layout-Events {
     flex: 1 0 0;
-    overflow: hidden;
 }
 
 
@@ -208,7 +207,6 @@ body {
 .DualPanel-Section {
     flex: 1 0 0;
     display: flex;
-    overflow: hidden;
     flex-flow: column nowrap;
 }
 
@@ -233,6 +231,7 @@ body {
 
 .DualPanel-Content {
     flex: 1 0 0;
+    min-height: 300px;
     overflow: auto;
 }
 
