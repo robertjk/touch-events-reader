@@ -102,7 +102,9 @@ body {
 
 
 .Layout-TouchArea {
-    flex: 0 0 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,7 +119,9 @@ body {
 
 
 .Layout-Events {
-    flex: 1 0 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
 }
 
 
@@ -205,7 +209,10 @@ body {
 
 
 .DualPanel-Section {
-    flex: 1 0 auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+    /* `0%` used as that fixes the collapsing behaviour for Chrome */
+    flex-basis: 0%;
     display: flex;
     flex-flow: column nowrap;
 }
@@ -230,7 +237,9 @@ body {
 
 
 .DualPanel-Content {
-    flex: 1 0 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
     height: 300px;
     overflow: auto;
 }
