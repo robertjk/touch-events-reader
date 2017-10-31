@@ -3,15 +3,24 @@ const TIME_PRECISION = 3;
 
 const TOUCH_AREA_ID = 'touch-area';
 const TOUCH_AREA_HEIGHT_ID = 'touch-area-height';
+const BROWSER_EVENTS_DISPLAYED_ID = 'browser-events-displayed';
+const BROWSER_EVENTS_SECTION_ID = 'browser-events-section';
+const LIBRARY_EVENTS_DISPLAYED_ID = 'library-events-displayed';
+const LIBRARY_EVENTS_SECTION_ID = 'library-events-section';
 const BROWSER_EVENT_TEMPLATE_ID = 'browser-event-template';
 const LIBRARY_EVENT_TEMPLATE_ID = 'hammer-event-template';
 const BROWSER_EVENTS_LIST_ID = 'browser-events-list';
 const LIBRARY_EVENTS_LIST_ID = 'library-events-list';
+const EVENTS_SECTION_HIDDEN_CLASS = 'DualPanel--IsHidden'
 
 const startTime = performance.now();
 
 let touchArea;
 let touchAreaHeight;
+let libraryEventsDisplayed;
+let libraryEventsSection;
+let browserEventsDisplayed;
+let browserEventsSection;
 let browserEventTemplate;
 let libraryEventTemplate;
 let browserEvents;
@@ -25,6 +34,17 @@ function changeTouchAreaHeight(height) {
 
 function resetTouchAreaHeightValue() {
     touchAreaHeight.value = touchArea.offsetHeight;
+}
+
+
+function changeEventsSectionDisplay(section) {
+    return event => {
+        if (event.target.checked) {
+            section.classList.remove(EVENTS_SECTION_HIDDEN_CLASS);
+        } else {
+            section.classList.add(EVENTS_SECTION_HIDDEN_CLASS);
+        }
+    };
 }
 
 
@@ -69,6 +89,10 @@ function printHammerEvent(event) {
 function initializeVariables() {
     touchArea = document.getElementById(TOUCH_AREA_ID);
     touchAreaHeight = document.getElementById(TOUCH_AREA_HEIGHT_ID);
+    browserEventsDisplayed = document.getElementById(BROWSER_EVENTS_DISPLAYED_ID);
+    browserEventsSection = document.getElementById(BROWSER_EVENTS_SECTION_ID);
+    libraryEventsDisplayed = document.getElementById(LIBRARY_EVENTS_DISPLAYED_ID);
+    libraryEventsSection = document.getElementById(LIBRARY_EVENTS_SECTION_ID);
     browserEventTemplate = document.getElementById(BROWSER_EVENT_TEMPLATE_ID).innerHTML;
     libraryEventTemplate = document.getElementById(LIBRARY_EVENT_TEMPLATE_ID).innerHTML;
     browserEvents = document.getElementById(BROWSER_EVENTS_LIST_ID);
@@ -86,6 +110,16 @@ function initializeControls() {
             resetTouchAreaHeightValue();
         }
     });
+
+    browserEventsDisplayed.addEventListener('change', changeEventsSectionDisplay(browserEventsSection));
+    libraryEventsDisplayed.addEventListener('change', changeEventsSectionDisplay(libraryEventsSection));
+
+    if (!browserEventsDisplayed.checked) {
+        browserEventsSection.classList.add(EVENTS_SECTION_HIDDEN_CLASS);
+    }
+    if (!libraryEventsDisplayed.checked) {
+        libraryEventsSection.classList.add(EVENTS_SECTION_HIDDEN_CLASS);
+    }
 }
 
 

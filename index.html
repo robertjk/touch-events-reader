@@ -81,6 +81,20 @@
                          class="Controls-ControlInput--Number"> px
               </div>
           </div>
+          <div>
+              <label>Show browser events</label>
+              <input type="checkbox"
+                     checked="checked"
+                     id="browser-events-displayed"
+                     class="" />
+          </div>
+          <div>
+              <label>Show hammer.js events</label>
+              <input type="checkbox"
+                     checked="checked"
+                     id="library-events-displayed"
+                     class="" />
+          </div>
       </div>
 
       <div id="touch-area"
@@ -89,15 +103,17 @@
       </div>
 
       <div class="DualPanel Layout-Events">
-          <section class="DualPanel-Section">
-              <h2 class="DualPanel-Heading">Registered by the browser</h2>
+          <section class="DualPanel-Section"
+                   id="browser-events-section">
+              <h2 class="DualPanel-Heading">Browser</h2>
               <ul id="browser-events-list"
                   class="List DualPanel-Content">
               </ul>
           </section>
 
-          <section class="DualPanel-Section">
-              <h2 class="DualPanel-Heading">Recognized by hammer.js</h2>
+          <section class="DualPanel-Section"
+                   id="library-events-section">
+              <h2 class="DualPanel-Heading">hammer.js</h2>
               <ul id="library-events-list"
                   class="List DualPanel-Content">
               </ul>

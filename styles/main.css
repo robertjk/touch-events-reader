@@ -163,6 +163,11 @@ body {
 }
 
 
+.DualPanel-Section.DualPanel--IsHidden {
+    display: none;
+}
+
+
 .DualPanel-Section + .DualPanel-Section {
     margin-left: 30px;
 }
