@@ -304,23 +304,18 @@ body {
 }
 
 
-.Event-Type--touchstart {
+.Event-Type--pointerdown {
     background-color: var(--green);
 }
 
 
-.Event-Type--touchend {
+.Event-Type--pointerup {
     background-color: var(--red);
 }
 
 
-.Event-Type--touchmove {
+.Event-Type--pointermove {
     background-color: var(--blue);
-}
-
-
-.Event-Type--touchcancel {
-    background-color: var(--orange);
 }
 
 
@@ -357,26 +352,6 @@ body {
 .Event-Type--rotate {
     background-color: var(--red);
 }
-
-
-.Event-DescriptionEnd {
-    margin-left: var(--spacing-y);
-}
-
-
-.Event-TouchList {
-    padding-left: 8px;
-}
-
-
-.Event-Touch {
-}
-
-
-.Event-TouchId {
-    font-weight: 700;
-}
-
 
 
 .Event-PropertiesList {

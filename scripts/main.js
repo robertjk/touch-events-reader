@@ -61,9 +61,7 @@ function scrollDownElement(element) {
 function printBrowserEvent(event) {
     let view = {
         timeOfEvent: currentTime(),
-        type: event.type,
-        // Mustache needs Array object.
-        touches: Array.from(event.changedTouches)
+        event: event
     };
 
     Mustache.parse(browserEventTemplate);
@@ -127,10 +125,9 @@ function initializeControls() {
 function initializeBrowserEvents() {
     let options = { passive: true };
 
-    touchArea.addEventListener('touchstart',  printBrowserEvent, options);
-    touchArea.addEventListener('touchend',    printBrowserEvent, options);
-    touchArea.addEventListener('touchcancel', printBrowserEvent, options);
-    touchArea.addEventListener('touchmove',   printBrowserEvent, options);
+    touchArea.addEventListener('pointerdown', printBrowserEvent,options);
+    touchArea.addEventListener('pointerup',   printBrowserEvent,options);
+    touchArea.addEventListener('pointermove', printBrowserEvent,options);
 }
 
 

@@ -18,32 +18,29 @@
     <script defer="defer" src="./scripts/lib/hammer.js"></script>
     <script defer="defer" src="./scripts/main.js"></script>
 
-    <!-- Template for log of a single event. -->
+    <!-- Template for log of a single browser event. -->
     <template id="browser-event-template">
         <li class="Event List-Item">
             <p class="Event-MainDescription">
                 <span class="Event-Time">[{{ timeOfEvent }}s]</span>
-                <span class="Event-Type Event-Type--{{ type }}">{{ type }}</span>
-                <span class="Event-DescriptionEnd">with {{ touches.length }}
-                    touch(es)</span>
+                <span class="Event-Type Event-Type--{{ event.type }}">{{ event.type }}</span>
             </p>
-            <ul class="Event-TouchList">
-                {{# touches }}
-                <li class="Event-Touch">
-                    ID: <span class="Event-TouchId">{{ identifier }}</span>
-                    <ul class="Event-PropertiesList">
-                        <li class="Event-Property">x: {{ clientX }}</li>
-                        <li class="Event-Property">y: {{ clientY }}</li>
-                        <li class="Event-Property">radiusX: {{ radiusX }}</li>
-                        <li class="Event-Property">radiusY: {{ radiusY }}</li>
-                        <li class="Event-Property">force: {{ force }}</li>
-                    </ul>
-                </li>
-                {{/ touches }}
+            {{# event }}
+            <ul class="Event-PropertiesList">
+                <li class="Event-Property">pointerId: {{ pointerId }}</li>
+                <li class="Event-Property">pointerType: {{ pointerType }}</li>
+                <li class="Event-Property">clientX: {{ clientX }}</li>
+                <li class="Event-Property">clientY: {{ clientY }}</li>
+                <li class="Event-Property">width: {{ width }}</li>
+                <li class="Event-Property">height: {{ height }}</li>
+                <li class="Event-Property">pressure: {{ pressure }}</li>
+                <li class="Event-Property">twist: {{ twist }}</li>
             </ul>
+            {{/ event }}
         </li>
     </template>
 
+    <!-- Template for log of a single hammer.js event. -->
     <template id="hammer-event-template">
         <li class="Event List-Item">
             <p class="Event-MainDescription">
